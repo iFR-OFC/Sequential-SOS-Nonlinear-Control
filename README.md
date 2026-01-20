@@ -14,8 +14,16 @@ If installed correctly, you can excute the corresponding files as outlined below
 
 
 ```text
-00_ROA/		  # Folder containing the region-of-attraction cases
-├── F18       # region of attraction for the 7D F18 aircraft
-├── RobotArm  # Contains the N-link robot arm example. 
-01_control_design # Folder containing 
+constraintViolationCheck_comparison.m   # Comparison from Section IV-A
+00_ROA		                            # Folder containing the region-of-attraction cases
+├── F18                                 # region of attraction for the 7D F18 aircraft
+├── RobotArm                            # Contains the N-link robot arm example. 
+01_Control_design                       # Folder containing for nonlinear systems
+├── Aircraft_4D                         # Contains the control design for nonlinear longitudinal motion of an aircraft
+├── Satellite_6D                        # Control desing for control-affine nonlinear dynamics of a satellite
+02_Reachabilty                          # Folder contains two cases to compute an inner-approximation of the reachable set
+├──Aircarft_4D                          # Inner-approximation of the reachable set for an aircraft lonitudinal motion
+├──VanDerPol_2D                         # Inner-approximation of the reachable set for the Van-der-Pol Oscillator
+03_CBF_CLF                              # Files for sequential SOS to compute a compatible pair of CBF-CLF
 ```
+All folder contain the script for either the sequential SOS or coordinate-descent implementation. Except for the N-link robot arm we also provide screenshots showing the computational stats. Note that these might differ on other machines.
