@@ -1,0 +1,138 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.06600,0.44300,0.74500}%
+\definecolor{mycolor2}{rgb}{0.86600,0.32900,0.00000}%
+\definecolor{mycolor3}{rgb}{0.12941,0.12941,0.12941}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=0.951\figW,
+height=0.419\figH,
+at={(0\figW,0.581\figH)},
+scale only axis,
+xmin=4,
+xmax=24,
+xtick={ 4,  6,  8, 10, 12, 14, 16, 18, 20, 22, 24},
+ymode=log,
+ymin=0.1,
+ymax=100000,
+yminorticks=true,
+ylabel style={font=\color{mycolor3}},
+ylabel={Solver time [s]},
+axis background/.style={fill=white},
+xmajorgrids,
+ymajorgrids,
+yminorgrids,
+legend style={at={(0.03,0.97)}, anchor=north west, legend cell align=left, align=left}
+]
+\addplot [color=mycolor1, line width=1.0pt, mark=o, mark options={solid, mycolor1}]
+  table[row sep=crcr]{%
+4	0.252955000000001\\
+6	0.758756799999998\\
+8	2.2164693\\
+10	8.44355089999999\\
+12	29.3393798000001\\
+14	74.6133297\\
+16	179.851265300001\\
+18	504.7897717\\
+20	1032.41588\\
+22	2318.01819009999\\
+24	5811.65797019999\\
+};
+\addlegendentry{sequential}
+
+\addplot [color=mycolor2, line width=1.0pt, mark=triangle, mark options={solid, mycolor2}]
+  table[row sep=crcr]{%
+4	1.292345\\
+6	1.0343014\\
+8	3.11057380000001\\
+10	9.51906249999998\\
+12	42.4094956999999\\
+14	153.277604500001\\
+16	547.347421599998\\
+18	1477.5207614\\
+20	2735.9743448\\
+22	13106.1980309\\
+24	36668.0835347\\
+};
+\addlegendentry{coordinate-descent}
+
+\end{axis}
+
+\begin{axis}[%
+width=0.951\figW,
+height=0.419\figH,
+at={(0\figW,0\figH)},
+scale only axis,
+xmin=4,
+xmax=24,
+xtick={ 4,  6,  8, 10, 12, 14, 16, 18, 20, 22, 24},
+xlabel style={font=\color{mycolor3}},
+xlabel={Number of states},
+ymin=5,
+ymax=50,
+ylabel style={font=\color{mycolor3}},
+ylabel={Iterations [-]},
+axis background/.style={fill=white},
+xmajorgrids,
+ymajorgrids,
+legend style={at={(0.03,0.97)}, anchor=north west, legend cell align=left, align=left}
+]
+\addplot [color=mycolor1, line width=1.0pt, mark=o, mark options={solid, mycolor1}]
+  table[row sep=crcr]{%
+4	7\\
+6	9\\
+8	9\\
+10	10\\
+12	11\\
+14	10\\
+16	9\\
+18	10\\
+20	11\\
+22	10\\
+24	11\\
+};
+\addlegendentry{sequential}
+
+\addplot [color=mycolor2, line width=1.0pt, mark=triangle, mark options={solid, mycolor2}]
+  table[row sep=crcr]{%
+4	23\\
+6	15\\
+8	17\\
+10	16\\
+12	23\\
+14	26\\
+16	29\\
+18	33\\
+20	28\\
+22	32\\
+24	50\\
+};
+\addlegendentry{coordinate-descent}
+
+\end{axis}
+
+\begin{axis}[%
+width=1.227\figW,
+height=1.227\figH,
+at={(-0.16\figW,-0.135\figH)},
+scale only axis,
+xmin=0,
+xmax=1,
+ymin=0,
+ymax=1,
+axis line style={draw=none},
+ticks=none,
+axis x line*=bottom,
+axis y line*=left,
+xmajorgrids,
+ymajorgrids,
+legend style={legend cell align=left, align=left}
+]
+\end{axis}
+\end{tikzpicture}%
