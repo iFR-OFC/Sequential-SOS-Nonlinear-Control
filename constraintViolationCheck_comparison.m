@@ -33,7 +33,7 @@ maxDeg = 6;
 
 % number of states; problem dependent, but limitied here to five 
 % otherwise SOS projection runs in memory problems
-nxMax = 12;
+nxMax = 5;
 
 % Initialize arrays to store computation times for each method
 time_sos                = zeros(1, nxMax-1);   
@@ -43,9 +43,10 @@ time_sampling_1000      = zeros(1, nxMax-1);
 time_sampling_10000     = zeros(1, nxMax-1);  
 time_sampling_100000    = zeros(1, nxMax-1); 
 
+
+
 % Loop over nx from 2 to nxMax
 for nx = 2:nxMax 
-    nx
     % Indeterminate variables
     x = casos.Indeterminates('x', nx);
 
@@ -59,23 +60,23 @@ for nx = 2:nxMax
     end
 
     %% Projection onto SOS cone
-    % Gram decision variable
-    % s = casos.PS.sym('q', grambasis(p));
+    %Gram decision variable
+    s = casos.PS.sym('q', grambasis(p));
 
-    % Projection error
-    % e = s - p;
+    %Projection error
+    e = s - p;
 
-    % Min ||s-p||^2 s.t. s is SOS
-    % sos = struct('x', s, 'f', dot(e, e));
+    %Min ||s-p||^2 s.t. s is SOS
+    sos = struct('x', s, 'f', dot(e, e));
 
-    % opts = struct('Kx', struct('sos', N));
-    % opts.error_on_fail = 0;
+    opts = struct('Kx', struct('sos', N));
+    opts.error_on_fail = 0;
 
     % Solve by relaxation to SDP
-    % S = casos.sossol('S', 'mosek', sos, opts);
-    % startSD = tic;
-    % sol = S();
-    % time_sos(nx-1) = toc(startSD);  % Store time for SOS projection
+    S_proj = casos.sossol('S', 'mosek', sos, opts);
+    startSD = tic;
+    sol = S_proj();
+    time_sos(nx-1) = toc(startSD);  % Store time for SOS projection
 
     %% Define signed distance
     opts = [];
@@ -97,7 +98,6 @@ for nx = 2:nxMax
     startSD = tic;
     sol = S();
     time_signed_distance(nx-1) = toc(startSD); 
-
 
     %% Define sampling approaches
     % assume a simple box; only needed for computation

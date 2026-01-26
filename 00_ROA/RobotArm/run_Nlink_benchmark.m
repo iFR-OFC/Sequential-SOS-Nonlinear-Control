@@ -60,34 +60,63 @@ end
 runs = 2:Nmax;
 
 % plot solve times
-figure(1)
+figure('Name', 'Realtive improvement regarding solve times and iterations')
+subplot(211)
+hold on
+rel_solveTime = (solverTimes_total_CD(idx_infes_cd)'-solverTimes_total_Seq)./solverTimes_total_CD(idx_infes_cd)'*100;
+mean_solveTimeRel = mean(rel_solveTime);
+yline(mean_solveTimeRel)
+hold on
+bar(2*runs,rel_solveTime);
+% xlabel('Number of states')
+legend('Mean value','rel. Improvement','Location','best')
+ylabel('Relative improvment in solve time in percent')
+xticks((2:Nmax)*2) 
+
+% plot iterations (no subiterations of feasibiltity restoration)
+subplot(212)
+hold on
+rel_iteration = (iteration_array_CD(idx_infes_cd)'-iteration_array_Seq)./iteration_array_CD(idx_infes_cd)'*100;
+mean_rel_iteration = mean(rel_iteration);
+yline(mean_rel_iteration)
+hold on
+bar(2*runs,rel_iteration);
+xlabel('Number of states')
+ylabel('Relative improvment in iterations in percent')
+legend('Mean value','rel. Improvement','Location','best')
+xticks((2:Nmax)*2) 
+
+
+if genTikz 
+cleanfigure();
+matlab2tikz('NlinkPendulum.tex','width','\figW','height','\figH')
+end
+
+
+% plot solve times
+figure('Name', 'Solve times and iterations')
 subplot(211)
 semilogy(runs*2,solverTimes_total_Seq,'-o')
 hold on
-%semilogy(runs*2,solverTimes_total_Seq_badInit,'-or')
 semilogy(runs(idx_infes_cd)*2,solverTimes_total_CD(idx_infes_cd),'-^')
-
-% xlabel('Number of states')
+xlabel('Number of states')
 ylabel('Solver time [s]')
 legend('sequential','coordinate-descent','Location','northwest')
 xticks((2:Nmax)*2) 
 
 % plot iterations (no subiterations of feasibiltity restoration)
 subplot(212)
-plot(runs*2,iteration_array_Seq,'-o')
+ plot(runs*2,iteration_array_Seq,'-o')
 hold on
-%plot(runs*2,iteration_array_Seq_badInit,'-or')
 plot(runs(idx_infes_cd)*2,iteration_array_CD(idx_infes_cd),'-^')
-
 xlabel('Number of states')
 ylabel('Iterations [-]')
 legend('sequential','coordinate-descent','Location','northwest')
 xticks((2:Nmax)*2) 
 
-if genTikz 
-cleanfigure();
-matlab2tikz('NlinkPendulum.tex','width','\figW','height','\figH')
-end
+
+
+
 
 % time per iteration
 figure(3)
@@ -112,20 +141,27 @@ end
 
 
 %% generate tables
-nStates = 2*(2:1:Nmax)';
+nStates = 2*runs';
 iteration  = iteration_array_Seq';
 times = solverTimes_total_Seq';
 
-Table_seq = table(nStates,n_con,n_dec,iteration,times)
+Table_seq = table(nStates,n_con,n_dec,iteration,times);
 
 
 iteration  = iteration_array_CD;
 times = solverTimes_total_CD;
 
-Table_cd = table(nStates,n_con,n_dec,iteration,times)
+Table_cd = table(nStates,n_con,n_dec,iteration,times);
 
 
 iteration  = iteration_array_Seq_badInit';
 times = solverTimes_total_Seq_badInit';
 
-Table_seq_bad = table(nStates,n_con,n_dec,iteration,times)
+Table_seq_bad = table(nStates,n_con,n_dec,iteration,times);
+
+
+disp(Table_seq)
+
+disp(Table_cd)
+
+disp(Table_seq_bad)
