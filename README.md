@@ -1,5 +1,5 @@
-# TCST-Sequential-Quadratic-Sum-of-squares-Programming-
-This repository supplements the paper "Sequential Quadratic Sum-of-squares Programming for Nonlinear Systems Control Design and Analysis" submitted to IEEE  Transactions on Control Systems Technology. It contains the case studies for different analysis and control problems.
+# TCST-Sequential-Quadratic-Sum-of-squares-Programming
+This repository supplements the paper "Sequential Quadratic Sum-of-squares Programming for Nonlinear Control Systems" submitted to IEEE  Transactions on Control Systems Technology. It contains the case studies for different analysis and control problems.
 
 ### Requirements and Setup
 The example package itself does not not need to be installed. Only a [stable version](https://github.com/ifr-acso/casos/releases/latest) of CaΣoS, [MOSEK](https://www.mosek.com/downloads/) v11.1 is needed and CasADi v3.6.7 are required. 
