@@ -1,4 +1,4 @@
-# TCST-Sequential-Quadratic-Sum-of-squares-Programming
+# Sequential-SOS-Nonlinear-Control
 This repository supplements the paper "Sequential Quadratic Sum-of-squares Programming for Nonlinear Control Systems" submitted to IEEE  Transactions on Control Systems Technology. It contains the case studies for different analysis and control problems.
 
 ### Requirements and Setup
