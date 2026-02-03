@@ -1,5 +1,6 @@
 # Sequential-SOS-Nonlinear-Control
-This repository supplements the paper "Sequential Quadratic Sum-of-squares Programming for Nonlinear Control Systems" submitted to IEEE  Transactions on Control Systems Technology. It contains the case studies for different analysis and control problems.
+This repository supplements the paper "Sequential Quadratic Sum-of-squares Programming for Nonlinear Control Systems" submitted to IEEE  Transactions on Control Systems Technology. The preprint can be found on [arxiv](https://arxiv.org/abs/2602.02394).
+It contains the case studies for different analysis and control problems.
 
 ### Requirements and Setup
 The example package itself does not not need to be installed. Only a [stable version](https://github.com/ifr-acso/casos/releases/latest) of CaΣoS, [MOSEK](https://www.mosek.com/downloads/) v11.1 is needed and CasADi v3.6.7 are required. 
@@ -27,3 +28,28 @@ constraintViolationCheck_comparison.m   # Comparison from Section IV-A
 03_CBF_CLF                              # Files for sequential SOS to compute a compatible pair of CBF-CLF
 ```
 All folder contain the script for either the sequential SOS or coordinate-descent implementation. Except for the N-link robot arm we also provide screenshots showing the computational stats. Note that these might differ on other machines.
+
+## Citation
+Please cite the following paper, if you use the sequential algorithm.
+
+> J. Olucak and T. Cunis , ‘Sequential Quadratic Sum-of-squares Programming for Nonlinear Control Systems’,  submitted to IEEE  Transactions on Control Systems Technology, 2026. Pre-print:(https://arxiv.org/abs/2602.02394)
+
+
+<details>
+
+<summary>Bibtex entry</summary>
+
+```bibtex
+@misc{olucak2026sequentialquadraticsumofsquaresprogramming,
+      title={Sequential Quadratic Sum-of-squares Programming for Nonlinear Control Systems}, 
+      author={Jan Olucak and Torbjørn Cunis},
+      year={2026},
+      eprint={2602.02394},
+      archivePrefix={arXiv},
+      primaryClass={math.OC},
+      url={https://arxiv.org/abs/2602.02394}, 
+}
+```
+
+
+
