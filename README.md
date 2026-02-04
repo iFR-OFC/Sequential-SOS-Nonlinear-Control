@@ -1,4 +1,6 @@
 # Sequential-SOS-Nonlinear-Control
+[![Identifier](https://img.shields.io/badge/doi-10.18419%2Fdarus--5677-d45815.svg)](https://doi.org/10.18419/darus-5677)
+
 This repository supplements the paper "Sequential Quadratic Sum-of-squares Programming for Nonlinear Control Systems" submitted to IEEE  Transactions on Control Systems Technology. The preprint can be found on [arxiv](https://arxiv.org/abs/2602.02394).
 It contains the case studies for different analysis and control problems.
 
