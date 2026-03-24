@@ -181,6 +181,38 @@ Ksol_re = subs(K,x,Dx*x);
 S.stats
 S.stats.single_iterations{end}.conic.size_A
 
+%% eval comp times
+mainSDP = [];
+FilterAcceptTime = [];
+SuffDecreaseTime = [];
+SocTime = [];
+HessApproxTime = [];
+for k = 1:length(S.stats.single_iterations)
+   mainSDP          = [mainSDP S.stats.single_iterations{k}.timeStats.mainSDP];
+   FilterAcceptTime = [FilterAcceptTime S.stats.single_iterations{k}.timeStats.FilterAcceptTime];
+   SuffDecreaseTime = [SuffDecreaseTime S.stats.single_iterations{k}.timeStats.SuffDecreaseTime];
+   SocTime          = [SocTime S.stats.single_iterations{k}.timeStats.SocTime];
+   HessApproxTime   = [HessApproxTime S.stats.single_iterations{k}.timeStats.HessApproxTime];
+end
+
+total_mainSDP = sum(mainSDP);
+total_filter = sum(FilterAcceptTime)+ sum(SuffDecreaseTime) + sum(SocTime);
+total_HessApproxTime = sum(HessApproxTime);
+
+
+
+fprintf('-------------------------------------------------------\n')
+fprintf('Total time is %f sec \n', S.stats.totalSolveTime + S.stats.solverBuildTime)
+fprintf('Main SDP time is %f sec \n', total_mainSDP )
+fprintf('Filter line search time is %f sec \n', total_filter )
+fprintf('other time is %f sec \n', total_HessApproxTime )
+fprintf('-------------------------------------------------------\n')
+fprintf('Ratio SDP/total time is %f %% \n', total_mainSDP/S.stats.totalSolveTime*100)
+fprintf('Ratio Line search/total time is %f %% \n', total_filter/S.stats.totalSolveTime*100)
+fprintf('Ratio Filter acceptance/Line search is %f %% \n', sum(FilterAcceptTime)/total_filter*100)
+fprintf('Ratio Others/total time is %f %% \n', total_HessApproxTime/S.stats.totalSolveTime*100)
+
+
 % %% plotting
 % import casos.toolboxes.sosopt.*
 % 

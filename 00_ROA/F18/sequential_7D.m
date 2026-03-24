@@ -102,8 +102,7 @@ f6  = @(beta,alpha,p,q,r,phi,xcR) ...
 f7  = @(beta,alpha,p,q,r,phi,xcR) 4.9*r - 1*xcR;
 
 
-
-% get trim point 
+ 
 f = @(x) [
                     f1(x(1,:),x(2,:),x(3,:),x(4,:),x(5,:),x(6,:),x(7,:))
                     f2(x(1,:),x(2,:),x(3,:),x(4,:),x(5,:),x(6,:),x(7,:))
@@ -115,13 +114,14 @@ f = @(x) [
 ];
 
 
- f = f(x*1);
-% [x0, u0] = findtrim(f,x0, u0);
+f = f(x*1);
+
 d2r = pi/180; r2d = 1/ d2r;
 
 
 Dmax = diag([10*d2r 25*d2r 35*d2r 30*d2r 15*d2r 25*d2r 20*d2r]);  
 N = inv(Dmax^2);   %  Scale by inverse of max state values
+
 g = x'*N*0.1*x-1;
 
 % Lyapunov function candidate
@@ -136,25 +136,22 @@ l = 1e-6*(x'*x);
 
 
 %% setup solver
+
 % options
 opts = struct('sossol','mosek');
 opts.verbose  = 1;
 opts.max_iter = 100;
-opts.almostOptCount = 10;
-opts.tolerance_con = 1e-4;
-% opts.conVioCheck = 'sampling';
 opts.sossol_options.newton_solver = [];
 
 
-% b     = casos.PS.sym('b');
 b = 1;
 
 % cost
 cost = dot(g-(V-b),g-(V-b)) ;
 
 sos = struct('x',[V; s1],... % decision variables
-    'f',cost, ...              % cost
-    'p',[]);                   % parameter
+    'f',cost, ...            % cost
+    'p',[]);                 % parameter
 
 % SOS constraints
 sos.('g') = [s1;
@@ -172,23 +169,22 @@ S = casos.nlsossol('S1','sequential',sos,opts);
 
 %% solve problem
 
-
+% initial guess
 A_cl = subs(nabla(f,x),x,zeros(7,1));
 
 P = lyap(full(A_cl),eye(7));
 
 Vval = x'*P*x;
 
-% initial guess
+
 V0 = Vval;
 s20 = (x'*x);
-% b0  = 1;
+
 x0 = casos.PD([V0;s20]);
 
 % solve problem
 sol = S('x0' ,x0);
 
-% casos.postProcessSolver(S,true);
 
 S.stats
 

@@ -153,7 +153,7 @@ l = 1e-6*(x'*x);
 opts = struct('sossol','mosek');
 opts.verbose  = 1;
 opts.max_iter = 100;
-% opts.conVioCheck = 'sampling';
+opts.almostOptCount = 20;
 opts.sossol_options.newton_solver = [];
 
 % sample in constrained set
@@ -224,23 +224,7 @@ x0 = casos.PD([V0;s20;s30;s40;s50;K0;b0]);
 % solve problem
 sol = S('x0' ,x0);
 
-% casos.postProcessSolver(S,true);
 
 S.stats
 
 S.stats.single_iterations{end}.conic
-
-%% plotting
-figure
-
-% re-scale solution
-xd = D*x;
-
-Vfun = to_function(subs(sol.x(1),x,xd));
-gfun = to_function(subs(g,x,xd));
-
-fcontour(@(x2,x3) full(Vfun(0,x2,x3,0) ), [-1 1 -4 4 ], 'b-', 'LevelList', full(sol.x(end)))
-hold on
-fcontour(@(x2,x3)  full(gfun(0,x2,x3,0) ), [-1 1 -4 4 ], 'r-', 'LevelList', 0)
-hold off
-legend('Lyapunov function','Safe set function')

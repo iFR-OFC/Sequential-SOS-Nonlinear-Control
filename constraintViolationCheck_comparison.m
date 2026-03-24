@@ -126,10 +126,10 @@ for nx = 2:nxMax
     time_sampling_10000(nx-1) = toc(startSmp);  % Store time for 10000 samples
 
     % Sampling with 100000 samples
-    % startSmp = tic;
-    % values_100000 = full(pfun(x_sample_all{:}));
-    % minVal_100000 = min(min(values_100000));
-    % time_sampling_100000(nx-1) = toc(startSmp);  % Store time for 100000 samples
+    startSmp = tic;
+    values_100000 = full(pfun(x_sample_all{:}));
+    minVal_100000 = min(min(values_100000));
+    time_sampling_100000(nx-1) = toc(startSmp);  % Store time for 100000 samples
 
 end
 
@@ -144,13 +144,13 @@ plot(2:nxMax , time_sampling_100000, 'c-s', 'LineWidth', 1);
 xlabel('n');
 ylabel('Computation Time (seconds)');
 legend('SOS Projection', 'Signed Distance', 'Sampling (1000)', 'Sampling (10000)', 'Sampling (100000)','Location','northwest');
-% title('Computation Time for Different Methods');
+title('Computation Time for Different Methods');
 grid on;
 
 % Set the y-axis to logarithmic scale
 set(gca, 'YScale', 'log');
 
-% 
-% cleanfigure();
-% matlab2tikz('compConsVio.tex','width','\figW','height','\figH');
+
+cleanfigure();
+matlab2tikz('compConsVio.tex','width','\figW','height','\figH');
 

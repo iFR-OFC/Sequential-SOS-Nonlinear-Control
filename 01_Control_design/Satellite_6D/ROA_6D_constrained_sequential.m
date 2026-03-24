@@ -109,15 +109,14 @@ l = 1e-6*(x'*x);
 opts = struct('sossol','mosek');
 opts.verbose  = 1;
 opts.max_iter = 100;
-
-
+opts.sossol_options.newton_solver =[];
 
 % cost
 cost = dot(g-(V-b),g-(V-b)) ;
 
 sos = struct('x',[V; s1;s2;s3;s4;kappa;b],... % decision variables
-    'f',cost, ...                   % cost
-    'p',[]);                        % parameter
+    'f',cost, ...                             % cost
+    'p',[]);                                  % parameter
 
 % SOS constraints
 sos.('g') = [s1;
@@ -134,7 +133,7 @@ sos.('g') = [s1;
 % states + constraint cones
 opts.Kx      = struct('lin', length(sos.x));
 opts.Kc      = struct('sos', length(sos.g));
-opts.sossol_options.newton_solver =[];
+
 
 % setup solver
 S = casos.nlsossol('S1','sequential',sos,opts);
