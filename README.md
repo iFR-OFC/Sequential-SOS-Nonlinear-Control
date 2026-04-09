@@ -33,6 +33,15 @@ constraintViolationCheck_comparison.m   # Comparison from Section IV-A
 ```
 All folder contain the script for either the sequential SOS or coordinate-descent implementation. Except for the N-link robot arm we also provide screenshots showing the computational stats. Note that these might differ on other machines.
 
+## Onboarding Tutorial
+For a simple onboarding process, we provide a tutorial.m file. This file implements a simpl example and guides the user through the solver build process. Due to its simplicity, this file is recommended for debugging purposes of the proposes filter line search algorithm.
+
+## Running the Benchmarks:
+1. Navigate to the corresponding folder.
+2. Run the MATLAB script either for the sequential approach or for coordinate descent.
+
+An exception is the N-link robot arm example (00_ROA/RobotArm). Use run_Nlink_benchmark.m to either run the benchmark from scratch or to just inspect the results, provided in the corresponding .mat file. (2026-04-07) 
+
 ## Citation
 Please cite the following paper, if you use the sequential algorithm.
 
