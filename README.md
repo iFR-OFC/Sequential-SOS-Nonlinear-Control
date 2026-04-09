@@ -15,6 +15,8 @@ The example package itself does not not need to be installed. Only a [stable ver
 
 If installed correctly, you can excute the corresponding files as outlined below for reproduction.
 
+In case you encounter any issues or for questions, please contact the corresponding authors.
+
 ### Folder Structure
 
 
@@ -41,6 +43,9 @@ For a simple onboarding process, we provide a tutorial.m file. This file impleme
 2. Run the MATLAB script either for the sequential approach or for coordinate descent.
 
 An exception is the N-link robot arm example (00_ROA/RobotArm). Use run_Nlink_benchmark.m to either run the benchmark from scratch or to just inspect the results, provided in the corresponding .mat file. (2026-04-07) 
+
+
+
 
 ## Citation
 Please cite the following paper, if you use the sequential algorithm.
