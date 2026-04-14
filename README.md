@@ -29,7 +29,7 @@ constraintViolationCheck_comparison.m   # Comparison from Section IV-A
 ├── Aircraft_4D                         # Contains the control design for nonlinear longitudinal motion of an aircraft
 ├── Satellite_6D                        # Control desing for control-affine nonlinear dynamics of a satellite
 02_Reachabilty                          # Folder contains two cases to compute an inner-approximation of the reachable set
-├──Aircarft_4D                          # Inner-approximation of the reachable set for an aircraft lonitudinal motion
+├──Aircraft_4D                          # Inner-approximation of the reachable set for an aircraft lonitudinal motion
 ├──VanDerPol_2D                         # Inner-approximation of the reachable set for the Van-der-Pol Oscillator
 03_CBF_CLF                              # Files for sequential SOS to compute a compatible pair of CBF-CLF
 ```
