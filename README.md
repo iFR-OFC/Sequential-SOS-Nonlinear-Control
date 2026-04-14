@@ -7,7 +7,6 @@ for Nonconvex Sum-of-squares Problems submitted to Mathematical Programming Comp
 It contains the case studies for different analysis and control problems.
 
 ### Requirements and Setup
-The example package itself does not not need to be installed. Only a [stable version](https://github.com/ifr-acso/casos/releases/latest) of CaΣoS, [MOSEK](https://www.mosek.com/downloads/) v11.1 is needed and CasADi v3.6.7 are required. 
 
   1. Download or clone [CaΣoS v1.0.0](https://github.com/iFR-OFC/casos/releases/tag/v1.0.0 )
   2. Download CasADi v3.6.7 and add it to your Matlab path.
